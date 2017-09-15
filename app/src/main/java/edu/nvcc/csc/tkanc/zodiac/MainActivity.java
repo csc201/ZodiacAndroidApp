@@ -4,24 +4,31 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
-    String zodiac="";
+    String zodiac="zodiac";
+    int year=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final Button btnZodiac = (Button) findViewById(R.id.btnZodiac);
+        final TextView textView = (TextView) findViewById(R.id.textView);
+        final DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
+        final EditText yearText = (EditText) findViewById(R.id.yearText);
         btnZodiac.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
 
-                Date date = new Date();
-                int year = date.getYear() + 1900;
+                //Date date = new Date();
+                year = datePicker.getYear();
                 System.out.println(year);
                 switch (year % 12) {
                     case 0:
@@ -60,9 +67,9 @@ public class MainActivity extends AppCompatActivity {
                     case 11:
                         zodiac ="sheep";
                 }
+                textView.setText("The zodiac for " + year + " is " + zodiac + ".");
             }
-
         });
-        System.out.println(zodiac);
+        System.out.println("The zodiac for " + year + " is " + zodiac + ".");
     }
 }
